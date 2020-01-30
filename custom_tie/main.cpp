@@ -1,7 +1,9 @@
 #include <string>
 #include <tuple>
 #include <cassert>
+#include <iostream>
 #include "custom_tie.h"
+#include "custom_tuple.h"
 
 auto getPerson() {
 
@@ -34,9 +36,13 @@ void test_custom_tuple_and_tie_together() {
 
 }
 
-int main(int argc, char * argv[])  {
+int main(int argc, char * argv[]) {
 
-    test_only_custom_tie();
+    //test_only_custom_tie();
+    custom_tuple<float, int, double> cs(1.1, 2, 5.6);
+    std::cout << custom_get<0>(cs) << std::endl;
+    std::cout << custom_get<1>(cs) << std::endl;
+    std::cout << custom_get<2>(cs) << std::endl;
 
     return 0;
 }
