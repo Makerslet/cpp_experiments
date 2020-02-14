@@ -10,7 +10,10 @@ struct custom_tuple;
 template <typename Head, typename... Tail>
 struct custom_tuple<Head, Tail...> : custom_tuple<Tail...>
 {
-    custom_tuple(Head head, Tail... tail) :
+    constexpr custom_tuple() :
+        custom_tuple<Tail...>(), _head()
+    {}
+    explicit custom_tuple(Head head, Tail... tail) :
         custom_tuple<Tail...>(tail...), _head(head)
     {}
 
@@ -29,7 +32,7 @@ template<std::size_t I, typename Head, typename... Args>
 struct getter
 {
     using return_type = typename getter<I-1, Args...>::return_type;
-    static return_type get(custom_tuple<Head, Args...> t)
+    static return_type& get(custom_tuple<Head, Args...> t)
     {
         return getter<I-1, Args...>::get(t);
     }
@@ -39,7 +42,7 @@ template<typename Head, typename... Args>
 struct getter<0, Head, Args...>
 {
     using return_type = typename custom_tuple<Head, Args...>::value_type;
-    static return_type get(custom_tuple<Head, Args...> t)
+    static return_type& get(custom_tuple<Head, Args...> t)
     {
         return t._head;
     }
@@ -47,7 +50,7 @@ struct getter<0, Head, Args...>
 
 
 template<std::size_t I, typename Head, typename... Args>
-typename getter<I, Head, Args...>::return_type
+typename getter<I, Head, Args...>::return_type&
 custom_get(custom_tuple<Head, Args...> t)
 {
     return getter<I, Head, Args...>::get(t);
