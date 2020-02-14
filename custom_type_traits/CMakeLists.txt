@@ -1,3 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
-add_executable(custom_type_trais main.cpp custom_type_traits.h)
+add_executable(custom_type_trais
+	    main.cpp
+		common_traits.h
+		is_integral_type.h
+		custom_type_traits.h)
