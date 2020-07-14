@@ -5,4 +5,10 @@ add_executable(
     main.cpp
     default_template_parameters.h
     common_type_example.h
+    specializations.h
+    deduction_guides.h
+    variadic_examples.h
     )
+
+set_target_properties(templates_examples PROPERTIES
+    CXX_STANDARD 17)
