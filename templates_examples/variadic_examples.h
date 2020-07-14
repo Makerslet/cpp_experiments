@@ -25,4 +25,27 @@ void print_v2(T first, Types... args)
     print_v2(args...);
 }
 
+template <typename T>
+class add_space
+{
+public:
+    add_space(const T& value) :
+        _ref(value)
+    {}
+
+    friend std::ostream& operator<<(std::ostream& os, add_space<T> arg)
+    {
+        return os << arg._ref << ' ';
+    }
+
+private:
+    const T& _ref;
+};
+
+template <typename... Types>
+void print_fe(Types... args)
+{
+    (std::cout << ... << add_space(args)) << std::endl;
+}
+
 #endif // VARIADIC_EXAMPLES_H

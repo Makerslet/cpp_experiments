@@ -16,6 +16,7 @@ void print_example()
 {
     print_v1(1, 2.4, "hello", 78u);
     print_v2(1, 2.4, "hello", 78u);
+    print_fe(1, 2.4, "hello", 78u);
 }
 
 int main(int, char**)
