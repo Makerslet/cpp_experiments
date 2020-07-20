@@ -8,6 +8,7 @@ add_executable(
     specializations.h
     deduction_guides.h
     variadic_examples.h
+    assign_different_types.h
     )
 
 set_target_properties(templates_examples PROPERTIES

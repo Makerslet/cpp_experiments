@@ -3,6 +3,7 @@
 #include "specializations.h"
 #include "deduction_guides.h"
 #include "variadic_examples.h"
+#include "assign_different_types.h"
 
 #include <iostream>
 #include <cassert>
@@ -17,6 +18,13 @@ void print_example()
     print_v1(1, 2.4, "hello", 78u);
     print_v2(1, 2.4, "hello", 78u);
     print_fe(1, 2.4, "hello", 78u);
+}
+
+void test_assign_diff_type()
+{
+    Stack<int> intsStack;
+    Stack<float> floatsStack;
+    floatsStack = intsStack;
 }
 
 int main(int, char**)
@@ -37,5 +45,6 @@ int main(int, char**)
     h4.print_self();
 
     print_example();
+    test_assign_diff_type();
     return 0;
 }
